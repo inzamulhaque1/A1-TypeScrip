@@ -85,3 +85,8 @@ interface Product {
 function fetchProduct(): Product {
   return { id: 1, name: "Laptop", price: 999 };
 }
+
+
+
+#2BLOG2
+
