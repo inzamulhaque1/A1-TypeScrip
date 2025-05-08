@@ -1,6 +1,5 @@
 # TypeScript: Union and Intersection Types and Their Impact on Code Quality
 
-This document provides two informational sections: Blog 1, which demonstrates the use of union and intersection types in TypeScript with practical examples, and Blog 2, which explains how TypeScript enhances code quality and project maintainability.
 
 ## Blog 1: Using Union and Intersection Types in TypeScript
 
@@ -31,7 +30,7 @@ handleStatus('error');  // Output: An error occurred.
 // handleStatus('invalid'); // Error: Argument of type '"invalid"' is not assignable to parameter of type 'Status'.
 ```
 
-In this example, the `Status` type restricts the `status` parameter to `'success'`, `'error'`, or `'loading'`. TypeScript's compiler ensures only valid values are used, preventing runtime errors.
+
 
 ### Intersection Types
 Intersection types combine multiple types into a single type using the `&` operator, requiring an object to satisfy all properties of the combined types.
@@ -58,7 +57,7 @@ console.log(`${admin.name} has permissions: ${admin.permissions.join(', ')}`);
 // Output: Alice has permissions: read, write, delete
 ```
 
-The `AdminUser` type requires properties from both `User` and `Admin`. TypeScript enforces this structure, ensuring all necessary fields are present.
+
 
 ## Blog 2: How TypeScript Enhances Code Quality and Project Maintainability
 
@@ -74,6 +73,3 @@ TypeScript significantly improves code quality and maintainability, making it a 
 
 5. **Advanced Tooling**: TypeScript integrates with IDEs to provide features like autocompletion, type hints, and real-time error detection. These tools accelerate development and reduce manual errors.
 
-For example, in a project handling user data, TypeScript ensures that objects passed to functions contain all required fields, catching potential issues during compilation rather than at runtime. This proactive error detection saves debugging time and improves software stability.
-
-By enforcing type safety, improving readability, and supporting robust tooling, TypeScript empowers developers to build maintainable, high-quality codebases, particularly in large-scale or collaborative environments.
