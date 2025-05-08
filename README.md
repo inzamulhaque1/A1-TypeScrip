@@ -90,3 +90,126 @@ function fetchProduct(): Product {
 
 #2BLOG2
 
+# **Union and Intersection Types in TypeScript: Practical Examples**  
+
+TypeScript's **union (`|`)** and **intersection (`&`)** types are powerful tools for composing flexible and precise type definitions. Let’s explore how they work with real-world examples.  
+
+---
+
+## **1. Union Types (`|`) – "Either/Or" Types**  
+A union type allows a variable to hold values of **multiple types**.  
+
+### **Example 1: Flexible Function Parameters**  
+```typescript
+function printId(id: number | string) {
+  console.log(`ID: ${id}`);
+}
+
+printId(101);        // Works (number)
+printId("abc123");   // Works (string)
+printId(true);       // Error: boolean not allowed
+```  
+
+### **Example 2: Handling Different Return Types**  
+```typescript
+type Result = { success: true; data: string } | { success: false; error: string };
+
+function fetchData(): Result {
+  if (Math.random() > 0.5) {
+    return { success: true, data: "Success!" };
+  } else {
+    return { success: false, error: "Failed!" };
+  }
+}
+
+const response = fetchData();
+if (response.success) {
+  console.log(response.data);    // TypeScript knows `data` exists here
+} else {
+  console.log(response.error);  // TypeScript knows `error` exists here
+}
+```  
+
+**Key Use Cases for Unions:**  
+✔ Accept multiple input types (e.g., `string | number`).  
+✔ Represent states (e.g., `loading | success | error`).  
+✔ Replace `any` with safer, explicit alternatives.  
+
+---
+
+## **2. Intersection Types (`&`) – "Combined" Types**  
+An intersection type **merges multiple types** into one, requiring all properties to exist.  
+
+### **Example 1: Combining Objects**  
+```typescript
+type User = { name: string };
+type Admin = { permissions: string[] };
+
+type SuperUser = User & Admin;
+
+const superUser: SuperUser = {
+  name: "Alice",
+  permissions: ["read", "write"], // Must include both User and Admin properties
+};
+```  
+
+### **Example 2: Extending Function Types**  
+```typescript
+type Loggable = { log: (msg: string) => void };
+type Serializable = { serialize: () => string };
+
+type Logger = Loggable & Serializable;
+
+const logger: Logger = {
+  log: (msg) => console.log(msg),
+  serialize: () => JSON.stringify({ timestamp: new Date() }),
+};
+```  
+
+**Key Use Cases for Intersections:**  
+✔ Mixins (combining multiple interfaces).  
+✔ Function composition (e.g., `Debounced & Throttled`).  
+✔ Building complex types from simpler ones.  
+
+---
+
+## **Union vs. Intersection Cheat Sheet**  
+| Feature          | Union (`A | B`)                     | Intersection (`A & B`)            |  
+|------------------|-------------------------------|-----------------------------------|  
+| **Meaning**      | A **or** B                   | A **and** B (combined)            |  
+| **Type Safety**  | Must handle all cases        | Must satisfy all properties       |  
+| **Common Uses**  | Flexible inputs, error states | Object composition, mixins        |  
+
+---
+
+## **Advanced Example: Combining Both**  
+```typescript
+type Employee = { id: number; role: string };
+type Contractor = { company: string; duration: number };
+
+type Worker = Employee | Contractor;          // Can be either
+type ManagedWorker = Employee & { managerId: number }; // Must have Employee + managerId
+
+const worker1: Worker = { id: 1, role: "dev" }; // Valid (Employee)
+const worker2: Worker = { company: "ABC", duration: 12 }; // Valid (Contractor)
+
+const managedWorker: ManagedWorker = {
+  id: 2,
+  role: "designer",
+  managerId: 101, // Required due to intersection
+};
+```  
+
+---
+
+## **When to Use Each**  
+- **Use Unions (`|`) when:**  
+  - A value can be one of several types.  
+  - You need to handle different states (e.g., API responses).  
+- **Use Intersections (`&`) when:**  
+  - You need to combine multiple types (e.g., extending interfaces).  
+  - You want to enforce that all properties exist.  
+
+By mastering unions and intersections, you can write more expressive and type-safe TypeScript code!  
+
+**Need more TypeScript tips?** Check out my posts on [type inference](link) or [improving code quality](link). 🚀
