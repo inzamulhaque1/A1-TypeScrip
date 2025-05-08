@@ -1,7 +1,5 @@
-#1BLOG1 
 
-
-# **Understanding Type Inference in TypeScript: Why It Matters**  
+# **Blog 1 Understanding Type Inference in TypeScript: Why It Matters**  
 
 TypeScript is renowned for its strong static typing, but explicitly defining types for every variable isn’t always necessary. Thanks to **type inference**, TypeScript can automatically deduce types based on assigned values, reducing boilerplate while maintaining safety.  
 
@@ -88,9 +86,7 @@ function fetchProduct(): Product {
 
 
 
-#2BLOG2
-
-# **Union and Intersection Types in TypeScript: Practical Examples**  
+# **Blog 2 Union and Intersection Types in TypeScript: Practical Examples**  
 
 TypeScript's **union (`|`)** and **intersection (`&`)** types are powerful tools for composing flexible and precise type definitions. Let’s explore how they work with real-world examples.  
 
